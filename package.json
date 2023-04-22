@@ -1,0 +1,90 @@
+{
+  "name": "@tomoeed/j-form",
+  "version": "0.0.1",
+  "description": "A Vue form validation component library",
+  "author": "Lu Mengyao",
+  "homepage": "https://github.com/meshareL/j-form",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meshareL/j-form.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meshareL/j-form/issues"
+  },
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "web-types": "schema/web-types.json",
+  "files": [
+    "dist",
+    "schema"
+  ],
+  "exports": {
+    ".": {
+      "import": "dist/index.esm.js",
+      "require": "dist/index.umd.js",
+      "types": "dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "vue",
+    "component",
+    "form",
+    "validation"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "rollup -c",
+    "postbuild": "api-extractor run --local --verbose && rimraf dist/type && node script/build-css.js",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build",
+    "doc:start": "vitepress dev doc --strictPort",
+    "doc:build": "vitepress build doc"
+  },
+  "peerDependencies": {
+    "vue": "3.x"
+  },
+  "dependencies": {
+    "type-fest": "^3.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/plugin-transform-runtime": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-typescript": "^7.21.4",
+    "@babel/runtime": "^7.21.0",
+    "@microsoft/api-extractor": "^7.34.4",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.1",
+    "@rollup/plugin-typescript": "^11.1.0",
+    "@types/jsdom": "^21.1.1",
+    "@types/node": "^18.15.13",
+    "@types/throttle-debounce": "^5.0.0",
+    "@vitest/coverage-c8": "^0.30.0",
+    "@vue/test-utils": "^2.3.2",
+    "autoprefixer": "^10.4.14",
+    "babel-plugin-polyfill-corejs3": "^0.7.1",
+    "core-js-pure": "^3.30.0",
+    "cssnano": "^6.0.0",
+    "jsdom": "^21.1.1",
+    "postcss": "^8.4.23",
+    "postcss-assets": "^6.0.0",
+    "rimraf": "^5.0.0",
+    "rollup": "^3.20.7",
+    "sass": "^1.62.0",
+    "throttle-debounce": "^5.0.0",
+    "tslib": "^2.5.0",
+    "typescript": "^5.0.4",
+    "unplugin-vue-macros": "^2.0.0",
+    "vitepress": "^1.0.0-alpha.73",
+    "vitest": "^0.30.0",
+    "vue": "^3.2.47"
+  }
+}

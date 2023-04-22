@@ -1,0 +1,602 @@
+{
+  "$schema": "http://json.schemastore.org/web-types",
+  "framework": "vue",
+  "name": "@tomoeed/j-form",
+  "version": "1.0.0",
+  "js-types-syntax": "typescript",
+  "description-markup": "markdown",
+  "framework-config": {
+    "enable-when": {
+      "node-packages": [
+        "vue",
+        "@vue/cli"
+      ],
+      "file-extensions": [
+        "vue"
+      ],
+      "ide-libraries": [
+        "vue"
+      ]
+    }
+  },
+  "contributions": {
+    "html": {
+      "vue-components": [
+        {
+          "name": "Form",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Form"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/form",
+          "description": "HTML form 表单, 使用表单你可以对表单组件进行统一管理",
+          "props": [
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false",
+              "description": "是否进行表单验证"
+            }
+          ],
+          "js": {
+            "events": [
+              {
+                "name": "submit",
+                "description": "表单 submit 事件, 如果表单验证未通过, 则不会触发该事件",
+                "arguments": [
+                  {
+                    "name": "event",
+                    "type": "Event"
+                  }
+                ]
+              }
+            ]
+          },
+          "slots": [
+            {
+              "name": "default"
+            }
+          ]
+        },
+        {
+          "name": "Label",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Label"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/label",
+          "description": "表单标签控件  标签文字应该简洁, 如果无法简短的描述可以考虑使用 `Summary` 组件提供更多的信息",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ]
+        },
+        {
+          "name": "Caption",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Caption"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/caption",
+          "description": "表单标题控件  标题文本应该简洁, 如果无法简短的描述可以考虑使用 `Summary` 组件提供更多的信息",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ]
+        },
+        {
+          "name": "Summary",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Summary"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/summary",
+          "description": "表单 `Summary` 控件, 摘要文本不应与其他控件 ( 如: 验证信息 ) 冗余",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ]
+        },
+        {
+          "name": "Masthead",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Masthead"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/masthead",
+          "description": "表单标题组件, 当 `Label` 或 `Caption` 组件配合 `Summary` 组件使用时, 需要使用此组件",
+          "slots": [
+            {
+              "name": "default"
+            }
+          ]
+        },
+        {
+          "name": "FormGroup",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "FormGroup"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/form-group",
+          "description": "使用 `FormGroup` 组件向表单添加输入项, 该组将自动将控件与标签配对, 并提供验证反馈信息",
+          "props": [
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false",
+              "description": "是否验证表单控件内容的有效性"
+            },
+            {
+              "name": "required",
+              "type": "boolean",
+              "default": "false",
+              "description": "表单控件内容是否可以为空"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            },
+            {
+              "name": "valid-feedback",
+              "description": "表单控件验证通过"
+            },
+            {
+              "name": "invalid-feedback",
+              "type": "{ contain: (violation: Violation) => boolean, containAny: (...violations: Violation[]) => boolean }",
+              "description": "表单控件验证未通过"
+            },
+            {
+              "name": "expect-feedback",
+              "description": "表单控件验证发生异常"
+            }
+          ]
+        },
+        {
+          "name": "TextInput",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "TextInput"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/text-input",
+          "description-sections": {
+            "v-model": "可选 v-model, 支持 trim 和 lazy 修饰符"
+          },
+          "props": [
+            {
+              "name": "size",
+              "type": [
+                "\"small\"",
+                "\"medium\"",
+                "\"large\""
+              ],
+              "default": "\"medium\"",
+              "description": "指定该控件的大小, 默认: `medium`"
+            },
+            {
+              "name": "modelValue",
+              "type": "string"
+            },
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false",
+              "description": "是否验证表单控件文本的有效性"
+            },
+            {
+              "name": "required",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "modelModifiers",
+              "type": "{ lazy?: boolean, trim?: boolean }",
+              "default": "{ lazy: false, trim: false }"
+            },
+            {
+              "name": "type",
+              "type": [
+                "\"text\"",
+                "\"email\"",
+                "\"search\"",
+                "\"tel\""
+              ],
+              "default": "\"text\"",
+              "description": "组件仅支持有限的类型, 如果需要其它类型的输入框, 请使用该类型对应的组件"
+            },
+            {
+              "name": "revalidate",
+              "type": "(inputCurrentValue: string) => Promise<boolean>",
+              "description": "二次验证, 例如: 用户名是否已被注册  二次验证只有在客户端验证通过后才会调用"
+            }
+          ],
+          "js": {
+            "events": [
+              {
+                "name": "update:modelValue",
+                "arguments": [
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Password",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Password"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/password",
+          "description": "可切换显示隐藏的密码框",
+          "description-sections": {
+            "v-model": "可选 v-model, 支持 lazy 修饰符"
+          },
+          "props": [
+            {
+              "name": "size",
+              "type": [
+                "\"small\"",
+                "\"medium\"",
+                "\"large\""
+              ],
+              "default": "\"medium\"",
+              "description": "指定该控件的大小, 默认: `medium`"
+            },
+            {
+              "name": "modelValue",
+              "type": "string"
+            },
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false",
+              "description": "是否验证表单控件文本的有效性"
+            },
+            {
+              "name": "required",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "modelModifiers",
+              "type": "{ lazy?: boolean }",
+              "default": "{ lazy: false }"
+            },
+            {
+              "name": "revalidate",
+              "type": "(inputCurrentValue: string) => Promise<boolean>",
+              "description": "二次验证, 例如: 检查密码强度  二次验证只有在客户端验证通过后才会调用"
+            }
+          ],
+          "js": {
+            "events": [
+              {
+                "name": "update:modelValue",
+                "arguments": [
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Textarea",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Textarea"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/textarea",
+          "description-sections": {
+            "v-model": "可选 v-model, 支持 lazy 修饰符"
+          },
+          "props": [
+            {
+              "name": "modelValue",
+              "type": "string"
+            },
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false",
+              "description": "是否验证表单控件文本的有效性"
+            },
+            {
+              "name": "required",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "modelModifiers",
+              "type": "{ lazy?: boolean, trim?: boolean }",
+              "default": "{ lazy: false, trim: false }"
+            }
+          ],
+          "js": {
+            "events": [
+              {
+                "name": "update:modelValue",
+                "arguments": [
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "RadioGroup",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "RadioGroup"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/radio-group",
+          "props": [
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "description": "是否禁用 `RadioGroup` 组件的所有后代表单控件"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "description": "统一设置 `Radio` 组件的 `name` 属性"
+            },
+            {
+              "name": "orientation",
+              "type": [
+                "\"horizontal\"",
+                "\"vertical\""
+              ],
+              "default": "\"vertical\"",
+              "description": "按钮组元素排列方向",
+              "doc-url": "https://www.w3.org/TR/wai-aria-1.2/#aria-orientation"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ]
+        },
+        {
+          "name": "Radio",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Radio"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/radio",
+          "props": [
+            {
+              "name": "modelValue",
+              "type": "string"
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": true,
+              "doc-url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio#value"
+            },
+            {
+              "name": "default-checked",
+              "type": "boolean",
+              "default": "false",
+              "description": "未使用 `v-model` 指令时, 指定 `Radio` 默认选中状态"
+            }
+          ],
+          "js": {
+            "events": [
+              {
+                "name": "update:modelValue",
+                "arguments": [
+                  {
+                    "name": "value",
+                    "type": "string"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "CheckboxGroup",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "CheckboxGroup"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/checkbox-group",
+          "props": [
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "minimum",
+              "type": "number",
+              "default": "Number.NEGATIVE_INFINITY",
+              "description": "`Checkbox` 最少选取数量"
+            },
+            {
+              "name": "maximum",
+              "type": "number",
+              "default": "Number.POSITIVE_INFINITY",
+              "description": "`Checkbox` 最多选取数量"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "description": "统一设置 `Checkbox` 组件的 `name` 属性"
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "default": "false",
+              "description": "是否禁用 `CheckboxGroup` 组件的所有后代表单控件"
+            },
+            {
+              "name": "orientation",
+              "type": [
+                "\"horizontal\"",
+                "\"vertical\""
+              ],
+              "default": "\"vertical\"",
+              "description": "复选框元素排列方向"
+            }
+          ],
+          "slots": [
+            {
+              "name": "default"
+            }
+          ]
+        },
+        {
+          "name": "Checkbox",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Checkbox"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/checkbox",
+          "props": [
+            {
+              "name": "modelValue",
+              "type": [
+                "boolean",
+                "string[]"
+              ]
+            },
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "type": "string",
+              "required": true
+            },
+            {
+              "name": "disabled",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "default-checked",
+              "type": "boolean",
+              "default": "false",
+              "description": "未使用 `v-model` 指令时, 指定 `Checkbox` 默认选中状态"
+            }
+          ],
+          "js": {
+            "events": [
+              {
+                "name": "update:modelValue",
+                "arguments": [
+                  {
+                    "name": "value",
+                    "type": [
+                      "boolean",
+                      "string[]"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "Select",
+          "source": {
+            "module": "@tomoeed/j-form",
+            "symbol": "Select"
+          },
+          "doc-url": "https://meshareL.github.io/j-form/component/select",
+          "props": [
+            {
+              "name": "novalidate",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "modelValue",
+              "type": [
+                "string",
+                "string[]"
+              ]
+            },
+            {
+              "name": "children",
+              "type": "SelectChildren"
+            },
+            {
+              "name": "size",
+              "type": [
+                "\"small\"",
+                "\"medium\"",
+                "\"large\""
+              ],
+              "default": "\"medium\""
+            },
+            {
+              "name": "required",
+              "type": "boolean",
+              "default": "false"
+            },
+            {
+              "name": "multiple",
+              "type": "{ minimum: number, maximum: number }",
+              "description": "多选框选项最少和最多选取的数量"
+            },
+            {
+              "name": "placeholder",
+              "type": "string",
+              "default": "''",
+              "doc-url": "https://vuejs.org/guide/essentials/forms.html#select"
+            }
+          ],
+          "js": {
+            "events": [
+              {
+                "name": "update:modelValue",
+                "arguments": [
+                  {
+                    "name": "value",
+                    "type": [
+                      "string",
+                      "string[]"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@use 'sass:map';
+@use '../support' as *;
+@use './support' as *;
+
+$_color:                     #f0f3f6 !default;
+$_bg:                        #0a0c10 !default;
+$_border-color:              #7a828e !default;
+$_focus-border-color:        #71b7ff !default;
+$_disabled-color:            #7a828e !default;
+$_disabled-bg:               rgba(158, 167, 179, 0) !default;
+
+$_choice-border-color:       #9ea7b3 !default;
+$_choice-focus-bg:           #71b7ff !default;
+$_choice-focus-border-color: #71b7ff !default;
+
+$_valid-border-color:        #09b43a !default;
+$_valid-color:               mix($_valid-border-color, white, 70%) !default;
+$_invalid-border-color:      #ff6a69 !default;
+$_invalid-color:             mix($_invalid-border-color, white, 70%) !default;
+
+$_caption-color:             $_color !default;
+
+$_theme-base: (
+  'color': (
+    'fg': $_color,
+    'bg': $_bg,
+    'placeholder': fade-out($_color, 0.4),
+    'border': $_border-color,
+    'focus': ( 'border': fade-out($_focus-border-color, 0.5) ),
+    'disabled': (
+      'fg': $_disabled-color,
+      'bg': $_disabled-bg
+    ),
+    'caption': ( 'fg': $_caption-color )
+  ),
+  'shadow': ( 'focus': 0 0 0 1px fade-out($_focus-border-color, 0.8) )
+) !default;
+
+$_theme-feedback: (
+  'color': (
+    'valid': (
+      'border': $_valid-border-color,
+      'focus': ( 'border':  $_valid-border-color)
+    ),
+    'invalid': (
+      'border': $_invalid-border-color,
+      'focus': ( 'border':  $_invalid-border-color)
+    ),
+    'feedback': (
+      'valid': ( 'fg': $_valid-color ),
+      'invalid': ( 'fg': $_invalid-color )
+    )
+  ),
+  'shadow': (
+    'valid': ( 'focus': 0 0 0 1px fade-out($_valid-border-color, 0.7) ),
+    'invalid': ( 'focus': 0 0 0 1px fade-out($_invalid-border-color, 0.7))
+  )
+) !default;
+
+$_theme-radio: (
+  'color': (
+    'border': $_choice-border-color,
+    'checked': (
+      'bg': $_choice-focus-bg,
+      'border': $_choice-focus-bg
+    )
+  ),
+  'shadow': ( 'checked': $_bg )
+) !default;
+
+$_theme-checkbox: (
+  'color': (
+    'border': $_choice-border-color,
+    'checked': (
+      'bg': $_choice-focus-bg,
+      'border': $_choice-focus-border-color
+    )
+  )
+) !default;
+
+$_theme: map.deep-merge($_theme-base, $_theme-feedback) !default;
+
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  .j-form {
+    color-scheme: dark;
+    @include define-variable($_theme);
+    @include define-radio-variable($_theme-radio);
+    @include define-checkbox-variable($_theme-checkbox);
+  }
+}
+
+.j-form.theme-dark.contrast-more,
+html[data-theme='dark'][data-contrast='more'] .j-form {
+  color-scheme: dark;
+  @include define-variable($_theme);
+  @include define-radio-variable($_theme-radio);
+  @include define-checkbox-variable($_theme-checkbox);
+}

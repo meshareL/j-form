@@ -1,0 +1,94 @@
+@use 'sass:map';
+@use '../support' as *;
+@use './support' as *;
+
+$_color:                     #24292f !default;
+$_bg:                        #ffffff !default;
+$_border-color:              #d0d7de !default;
+$_focus-border-color:        #0969da !default;
+$_disabled-color:            #8c959f !default;
+$_disabled-bg:               rgba(175, 184, 193, 0.2) !default;
+
+$_choice-border-color:       #6e7781 !default;
+$_choice-focus-bg:           darken($_choice-border-color, 20%) !default;
+
+$_valid-border-color:        #1a7f37 !default;
+$_valid-color:               mix($_valid-border-color, white, 80%) !default;
+$_invalid-border-color:      #cf222e !default;
+$_invalid-color:             mix($_invalid-border-color, white, 80%) !default;
+
+$_caption-color:             #6e7781 !default;
+
+$_theme-base: (
+  'color': (
+    'fg': $_color,
+    'bg': $_bg,
+    'placeholder': fade-out($_color, 0.4),
+    'border': $_border-color,
+    'focus': ( 'border': fade-out($_focus-border-color, 0.5) ),
+    'disabled': (
+      'fg': $_disabled-color,
+      'bg': $_disabled-bg
+    ),
+    'caption': ( 'fg': $_caption-color )
+  ),
+  'shadow': ( 'focus': 0 0 0 3px fade-out($_focus-border-color, 0.8) )
+) !default;
+
+$_theme-feedback: (
+  'color': (
+    'valid': (
+      'border': $_valid-border-color,
+      'focus': ( 'border':  $_valid-border-color)
+    ),
+    'invalid': (
+      'border': $_invalid-border-color,
+      'focus': ( 'border':  $_invalid-border-color)
+    ),
+    'feedback': (
+      'valid': ( 'fg': $_valid-color ),
+      'invalid': ( 'fg': $_invalid-color )
+    )
+  ),
+  'shadow': (
+    'valid': ( 'focus': 0 0 0 3px fade-out($_valid-border-color, 0.7) ),
+    'invalid': ( 'focus': 0 0 0 3px fade-out($_invalid-border-color, 0.7) )
+  )
+) !default;
+
+$_theme-radio: (
+  'color': (
+    'border': $_choice-border-color,
+    'checked': (
+      'bg': $_choice-border-color,
+      'border': $_choice-border-color
+    )
+  ),
+  'shadow': ( 'checked': $_bg )
+) !default;
+
+$_theme-checkbox: (
+  'color': (
+    'border': $_choice-border-color,
+    'checked': (
+      'bg': $_choice-border-color,
+      'border': $_choice-border-color
+    )
+  ),
+  'bgimg': ( 'checked': inline('asset/checked-light.svg') )
+) !default;
+
+$_theme: map.deep-merge($_theme-base, $_theme-feedback) !default;
+
+.j-form,
+.j-form.theme-light,
+html[data-theme='light'] .j-form {
+  color-scheme: light;
+  @include define-variable($_theme);
+  @include define-radio-variable($_theme-radio);
+  @include define-checkbox-variable($_theme-checkbox);
+
+  select {
+    #{$var-bgimg-select}: inline('asset/chevron-down-light.svg');
+  }
+}

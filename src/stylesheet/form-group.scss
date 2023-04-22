@@ -1,0 +1,26 @@
+.j-form .j-form-group {
+  display: flex;
+  flex-direction: column;
+
+  &.required {
+    label::after,
+    .caption::after {
+      content: '*';
+      margin-left: 6px;
+      line-height: 1;
+      vertical-align: middle;
+    }
+  }
+
+  .masthead {
+    margin-bottom: 8px;
+
+    label, .caption {
+      margin-bottom: 0;
+    }
+
+    .summary {
+      margin-top: 8px;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+@use 'sass:map';
+@use '../support' as *;
+@use './support' as *;
+
+$_color:                     #0e1116 !default;
+$_bg:                        #ffffff !default;
+$_border-color:              #20252c !default;
+$_focus-border-color:        #0969da !default;
+$_disabled-color:            #8c959f !default;
+$_disabled-bg:               rgba(172, 182, 192, 0.2) !default;
+
+$_choice-border-color:       #66707b !default;
+$_choice-focus-bg:           #0349b4 !default;
+$_choice-focus-border-color: #0349b4 !default;
+
+$_valid-color:               #055d20 !default;
+$_invalid-color:             #a0111f !default;
+
+$_caption-color:             $_color !default;
+
+$_theme-base: (
+  'color': (
+    'fg': $_color,
+    'bg': $_bg,
+    'placeholder': fade-out($_color, 0.2),
+    'border': $_border-color,
+    'focus': ( 'border': $_focus-border-color ),
+    'disabled': (
+      'fg': $_disabled-color,
+      'bg': $_disabled-bg
+    ),
+    'caption': ( 'fg': $_caption-color )
+  ),
+  'shadow': ( 'focus': 0 0 0 1px $_focus-border-color )
+) !default;
+
+$_theme-feedback: (
+  'color': (
+    'valid': (
+      'border': $_valid-color,
+      'focus': ( 'border':  $_valid-color)
+    ),
+    'invalid': (
+      'border': $_invalid-color,
+      'focus': ( 'border':  $_invalid-color)
+    ),
+    'feedback': (
+      'valid': ( 'fg': $_valid-color ),
+      'invalid': ( 'fg': $_invalid-color )
+    )
+  ),
+  'shadow': (
+    'valid': ( 'focus': 0 0 0 1px $_valid-color ),
+    'invalid': ( 'focus': 0 0 0 1px $_invalid-color )
+  )
+) !default;
+
+$_theme-radio: (
+  'color': (
+    'border': $_choice-border-color,
+    'checked': (
+      'bg': $_choice-focus-bg,
+      'border': $_choice-focus-bg
+    )
+  ),
+  'shadow': ( 'checked': $_bg )
+) !default;
+
+$_theme-checkbox: (
+  'color': (
+    'border': $_choice-border-color,
+    'checked': (
+      'bg': $_choice-focus-bg,
+      'border': $_choice-focus-border-color
+    )
+  )
+) !default;
+
+$_theme: map.deep-merge($-theme-base, $_theme-feedback) !default;
+
+@media (prefers-contrast: more) {
+  .j-form {
+    color-scheme: light;
+    @include define-variable($_theme);
+    @include define-radio-variable($_theme-radio);
+    @include define-checkbox-variable($_theme-checkbox);
+  }
+}
+
+.j-form.contrast-more,
+html[data-contrast='more'] .j-form {
+  color-scheme: light;
+  @include define-variable($_theme);
+  @include define-radio-variable($_theme-radio);
+  @include define-checkbox-variable($_theme-checkbox);
+}

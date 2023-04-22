@@ -1,0 +1,48 @@
+@use 'sass:map';
+@use '../support' as *;
+
+@mixin define-variable($theme) {
+  #{$var-color-fg}:                      map.get($theme, 'color', 'fg');
+  #{$var-color-bg}:                      map.get($theme, 'color', 'bg');
+  #{$var-color-placeholder}:             map.get($theme, 'color', 'placeholder');
+  #{$var-color-border}:                  map.get($theme, 'color', 'border');
+  #{$var-color-focus-border}:            map.get($theme, 'color', 'focus', 'border');
+  #{$var-shadow-focus}:                  map.get($theme, 'shadow', 'focus');
+  #{$var-color-disabled-fg}:             map.get($theme, 'color', 'disabled', 'fg');
+  #{$var-color-disabled-bg}:             map.get($theme, 'color', 'disabled', 'bg');
+
+  #{$var-color-valid-border}:            map.get($theme, 'color', 'valid', 'border');
+  #{$var-color-valid-focus-border}:      map.get($theme, 'color', 'valid', 'focus', 'border');
+  #{$var-shadow-valid-focus}:            map.get($theme, 'shadow', 'valid', 'focus');
+  #{$var-color-invalid-border}:          map.get($theme, 'color', 'invalid', 'border');
+  #{$var-color-invalid-focus-border}:    map.get($theme, 'color', 'invalid', 'focus', 'border');
+  #{$var-shadow-invalid-focus}:          map.get($theme, 'shadow', 'invalid', 'focus');
+
+  #{$var-color-caption-fg}:              map.get($theme, 'color', 'caption', 'fg');
+
+  #{$var-color-feedback-valid-fg}:       map.get($theme, 'color', 'feedback', 'valid', 'fg');
+  #{$var-color-feedback-invalid-fg}:     map.get($theme, 'color', 'feedback', 'invalid', 'fg');
+}
+
+@mixin define-radio-variable($theme) {
+  input[type='radio'] {
+    #{$var-color-border}:         map.get($theme, 'color', 'border');
+    #{$var-color-checked-bg}:     map.get($theme, 'color', 'checked', 'bg');
+    #{$var-color-checked-border}: map.get($theme, 'color', 'checked', 'border');
+    #{$var-shadow-checked}:       map.get($theme, 'shadow', 'checked');
+  }
+}
+
+@mixin define-checkbox-variable($theme) {
+  input[type='checkbox'] {
+    #{$var-color-border}:         map.get($theme, 'color', 'border');
+    #{$var-color-checked-bg}:     map.get($theme, 'color', 'checked', 'bg');
+    #{$var-color-checked-border}: map.get($theme, 'color', 'checked', 'border');
+
+    @if(map.has-key($theme, 'bgimg', 'checked')) {
+      &::before {
+        #{$var-bgimg-checked}: map.get($theme, 'bgimg', 'checked');
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+@mixin input-box-shadow($box-shadow-color) {
+  box-shadow: 0 0 0 3px $box-shadow-color;
+
+  @media (prefers-contrast: more) {
+    box-shadow: 0 0 0 1px $box-shadow-color;
+  }
+}

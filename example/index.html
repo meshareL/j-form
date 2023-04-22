@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JForm</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@20.8.1/dist/base.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@20.8.1/dist/color-modes.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@20.8.1/dist/layout.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@20.8.1/dist/utilities.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@primer/css@20.8.1/dist/buttons.css">
+  <link rel="stylesheet" href="../dist/index.css">
+  <style>
+    body { background-color: #ffffff; }
+
+    @media (prefers-color-scheme: dark) {
+      body { background-color: #22272e; }
+    }
+
+    @media (prefers-contrast: more) {
+      body { background-color: #ffffff; }
+    }
+
+    @media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+      body { background-color: #0a0c10; }
+    }
+  </style>
+</head>
+<body>
+<div id="root" class="container-lg pt-6"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.js"></script>
+<script src="../dist/index.umd.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

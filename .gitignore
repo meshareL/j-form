@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+*.iml
+out
+gen
+
+node_modules
+dist
+coverage
+doc/.vitepress/cache
+doc/.vitepress/dist

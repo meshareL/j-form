@@ -1,0 +1,78 @@
+$_prefix:                          --jf !default;
+$_color-prefix:                    #{$_prefix}-color !default;
+// Common
+$var-color-fg:                     #{$_color-prefix}-fg !default;
+$var-color-bg:                     #{$_color-prefix}-bg !default;
+$var-color-placeholder:            #{$_color-prefix}-placeholder !default;
+$var-color-border:                 #{$_color-prefix}-border !default;
+$var-color-focus-border:           #{$_color-prefix}-focus-border !default;
+$var-shadow-focus:                 #{$_prefix}-shadow-focus !default;
+$var-color-disabled-fg:            #{$_color-prefix}-disabled-fg !default;
+$var-color-disabled-bg:            #{$_color-prefix}-disabled-bg !default;
+// Radio, checkbox
+$var-color-checked-bg:             #{$_color-prefix}-checked-bg !default;
+$var-color-checked-border:         #{$_color-prefix}-checked-border !default;
+$var-shadow-checked:               #{$_prefix}-shadow-checked !default;
+$var-bgimg-checked:                #{$_prefix}-bgimg-checked !default;
+// Select
+$var-bgimg-select:                 #{$_prefix}-bgimg-select !default;
+// Validation
+$var-color-valid-border:           #{$_color-prefix}-valid-border !default;
+$var-color-valid-focus-border:     #{$_color-prefix}-valid-focus-border !default;
+$var-shadow-valid-focus:           #{$_prefix}-shadow-valid-focus !default;
+$var-color-invalid-border:         #{$_color-prefix}-invalid-border !default;
+$var-color-invalid-focus-border:   #{$_color-prefix}-invalid-focus-border !default;
+$var-shadow-invalid-focus:         #{$_prefix}-shadow-invalid-focus !default;
+// Caption
+$var-color-caption-fg:             #{$_color-prefix}-caption-fg !default;
+// Validation feedback
+$var-color-feedback-valid-fg:      #{$_color-prefix}-feedback-valid-fg !default;
+$var-color-feedback-invalid-fg:    #{$_color-prefix}-feedback-invalid-fg !default;
+
+$border-radius: 4px !default;
+$border-width: 1px !default;
+$border-style: solid !default;
+$border: $border-width $border-style var($var-color-border) !default;
+
+%BaseControl {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var($var-color-fg);
+  background-color: var($var-color-bg);
+  padding: 4px 8px;
+  border: $border;
+  border-radius: $border-radius;
+  max-width: 100%;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border-color: var($var-color-focus-border);
+    box-shadow: var($var-shadow-focus);
+  }
+
+  &:disabled {
+    color: var($var-color-disabled-fg);
+    border-color: var($var-color-border);
+    background-color: var($var-color-disabled-bg);
+  }
+
+  &.is-valid {
+    border-color: var($var-color-valid-border);
+
+    &:focus {
+      border-color: var($var-color-valid-focus-border);
+      box-shadow: var($var-shadow-valid-focus);
+    }
+  }
+
+  &.is-invalid {
+    border-color: var($var-color-invalid-border);
+
+    &:focus {
+      border-color: var($var-color-invalid-focus-border);
+      box-shadow: var($var-shadow-invalid-focus);
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@use './support' as *;
+
+.j-form {
+  color: var($var-color-fg);
+  font-size: 14px;
+
+  label, .caption, .summary {
+    display: block;
+  }
+
+  label, .caption {
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .summary {
+    font-size: 90%;
+    font-weight: 400;
+    color: var($var-color-caption-fg);
+  }
+
+  .choice-group {
+    display: flex;
+    align-items: center;
+
+    label {
+      display: inline-block;
+      margin-left: 8px;
+      margin-bottom: 0;
+      font-weight: 400;
+
+      &::after {
+        content: none !important;
+      }
+    }
+  }
+
+  .valid-feedback,
+  .invalid-feedback {
+    margin-top: 4px;
+  }
+
+  .valid-feedback { color: var($var-color-feedback-valid-fg); }
+  .invalid-feedback { color: var($var-color-feedback-invalid-fg); }
+}

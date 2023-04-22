@@ -1,0 +1,53 @@
+@use './support' as *;
+
+.j-form {
+  .j-form-control {
+    @extend %BaseControl;
+
+    &::placeholder {
+      color: var($var-color-placeholder);
+    }
+
+    &::-ms-reveal,
+    &::-ms-clear {
+      display: none;
+    }
+  }
+
+  .input-sm {
+    padding: 2px 6px
+  }
+
+  .input-lg {
+    font-size: 16px;
+    padding: 7px 11px;
+  }
+
+  // Password input
+  .visible-password {
+    position: relative;
+    max-width: 100%;
+
+    .j-form-control {
+      width: 100%;
+      padding-right: 32px;
+    }
+
+    .toggle {
+      position: absolute;
+      top: 1px;
+      right: 8px;
+      display: inline-block;
+      padding: 7px 8px 7px 0;
+      margin: auto -8px auto 0;
+      border: none;
+      background-color: transparent;
+      line-height: 1;
+      color: var($var-color-placeholder);
+    }
+
+    .toggle-icon {
+      vertical-align: bottom;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@use './support' as *;
+
+.j-form .j-form-radio-group {
+  [role='radiogroup'] {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    &[aria-orientation='horizontal'] {
+      flex-direction: row;
+
+      .choice-group:not(:first-of-type) {
+        margin-left: 12px;
+      }
+    }
+  }
+
+  input[type='radio'] {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border: $border;
+    border-radius: 50%;
+    transition: background-color 0.15s ease-in-out;
+
+    &:checked {
+      background-color: var($var-color-checked-bg);
+      border-color: var($var-color-checked-border);
+      box-shadow: inset 0 0 0 3px var($var-shadow-checked);
+    }
+  }
+}

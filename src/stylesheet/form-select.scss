@@ -1,0 +1,44 @@
+@use './support' as *;
+
+.j-form {
+  .j-form-select {
+    @extend %BaseControl;
+    appearance: none;
+    padding-right: 24px;
+    background-image: var($var-bgimg-select);
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+
+    &::-ms-expand {
+      opacity: 0;
+    }
+
+    &[multiple] {
+      height: auto;
+      padding: 0;
+      background-image: none;
+
+      optgroup {
+        padding-left: 8px;
+
+        option {
+          margin-left: -8px;
+        }
+      }
+
+      option {
+        padding-left: 8px;
+      }
+    }
+  }
+
+  .select-sm {
+    padding: 2px 6px
+  }
+
+  .select-lg {
+    font-size: 16px;
+    padding: 7px 11px;
+  }
+}
