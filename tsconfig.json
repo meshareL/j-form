@@ -27,13 +27,9 @@
       "ESNext"
     ],
     "target": "ESNext",
-    "skipLibCheck": true,
-    "types": [
-      "unplugin-vue-macros/macros-global"
-    ]
+    "skipLibCheck": true
   },
   "include": [
-    "env.d.ts",
     "src/**/*.ts",
     "test/**/*.ts"
   ],
